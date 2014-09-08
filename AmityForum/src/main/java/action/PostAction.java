@@ -23,9 +23,7 @@ public class PostAction extends ActionSupport implements ModelDriven<Post>{
 	  
 	@Autowired
 	private PostBO postBO;
-	
-	@Autowired
-	private PostDAO postDAO;
+
 	    
 	@Action(value="showPostPage",
 		    results={@Result(name="success",location="/jsp/postPage.jsp"),
@@ -45,8 +43,13 @@ public class PostAction extends ActionSupport implements ModelDriven<Post>{
 		    		@Result(name="failure",location="/jsp/error.jsp")}
 	)
 	public String addPost(){
-		System.out.println("Add Post");
 		System.out.println(post.getMessage());
+		try {
+			postBO.addPost(post);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return SUCCESS;
 	}
 	
@@ -73,13 +76,5 @@ public class PostAction extends ActionSupport implements ModelDriven<Post>{
 	}
 
 
-
-	public PostDAO getPostDAO() {
-		return postDAO;
-	}
-
-	public void setPostDAO(PostDAO postDAO) {
-		this.postDAO = postDAO;
-	}
 
 }

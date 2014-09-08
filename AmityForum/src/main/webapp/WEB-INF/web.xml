@@ -27,7 +27,7 @@
       <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
   
-<!-- 	Making application to use Spring Annotation	
+<!-- 	Making application to use Spring Annotation	 -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -44,7 +44,7 @@
         </param-value>
 		</init-param>
 		
-	</servlet> -->
+	</servlet> 
 	
 <!-- Configuration for Struts 2.x -->
 	<filter>

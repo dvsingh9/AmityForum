@@ -1,9 +1,10 @@
 package service.BOImpl;
 
+import java.io.Serializable;
+
 import model.Post;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import persistence.dao.PostDAO;
@@ -17,9 +18,10 @@ public class PostBOImpl implements PostBO{
 	
 	public PostBOImpl(){}
 	
-	public String addPost() {
-		return null;
+	public Serializable addPost(Post post) {
+		return postDAO.save(post);
 	}
+
 
 	public Post getPost(Long id) {
 		return postDAO.get(id);
@@ -39,5 +41,6 @@ public class PostBOImpl implements PostBO{
 		this.postDAO = postDAO;
 	}
 
+	
 	
 }

@@ -116,29 +116,14 @@
 				<ul id="nav" class="sf-menu">
 					<li class="current-menu-item"><a href="HomePage">Home<span class="subheader">Welcome</span></a>
 					</li>
-					<li><a href="features.html">Post<span class="subheader">Write To All</span></a>
-						<ul>
-							<li><a href="showPostPage"><span>Question</span></a></li>
-							<li><a href="features-accordion.html"><span>Discussion</span></a></li>
-							<li><a href="features-toggle.html"><span> Toggle box</span></a></li>
-							<li><a href="features-tabs.html"><span> Tabs</span></a></li>
-							<li><a href="features-infobox.html"><span> Text	box</span></a></li>
-							<li><a href="features-monobox.html"><span> Icons</span></a></li>
-						</ul>
+					<li><a href="showPostPage">Post<span class="subheader">Write To All</span></a>					
 					</li>
 					<li><a href="blog.html">Blog<span class="subheader">Read our posts</span></a></li>
 					<li><a href="portfolio.html">Portfolio <span
 							class="subheader">Showcase work</span></a></li>
 					<li><a href="gallery.html">Gallery<span class="subheader">Featured
 								work</span></a>
-						<ul>
-							<li><a href="gallery.html"><span> Four columns</span></a></li>
-							<li><a href="gallery-3.html"><span> Three columns
-								</span></a></li>
-							<li><a href="gallery-2.html"><span> Two columns </span></a></li>
-							<li><a href="video-gallery.html"><span> Video
-										gallery </span></a></li>
-						</ul></li>
+						</li>
 					<li><a href="contact.html">Contact<span class="subheader">Get
 								in touch</span></a></li>
 				</ul>

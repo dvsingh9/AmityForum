@@ -1,10 +1,12 @@
 package service.BO;
 
+import java.io.Serializable;
+
 import model.Post;
 
 public interface PostBO {
 
-	public String addPost();
+	public Serializable addPost(Post post);
 	public Post getPost(Long id);
 	public Post loadPost(Long id);
 }

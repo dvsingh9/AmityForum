@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@PropertySource({ "classpath:persistence.properties" })
+@PropertySource({ "classpath:hibernate.properties" })
 @ComponentScan(basePackages = {"persistence"})
 public class PersistenceConfig {
 	

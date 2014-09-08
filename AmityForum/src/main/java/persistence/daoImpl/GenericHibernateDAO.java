@@ -44,6 +44,7 @@ public class GenericHibernateDAO<T, ID extends Serializable> implements GenericD
 	
 	@Transactional
 	public Serializable save(T entiry) {
+		//System.out.println(getSessionFactory());
 		return  getSessionFactory().getCurrentSession().save(entiry);
 	}
 
