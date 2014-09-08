@@ -10,19 +10,74 @@
 
 	<properties>
 		<spring.groupid>org.springframework</spring.groupid>
-		<spring.version>4.0.0.RELEASE</spring.version>
+		<spring.version>4.0.1.RELEASE</spring.version>
 		<hibernate.version>4.3.0.Final</hibernate.version>
 		<struts.version>2.3.16</struts.version>
 		<cglib.version>3.0</cglib.version>
 	</properties>
 
 	<dependencies>
-	
+
+		<!-- JUnit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Postgres SQL Server <dependency> <groupId>org.postgresql</groupId> 
+			<artifactId>postgresql</artifactId> <version>9.3-1100-jdbc41</version> </dependency> -->
 
 		<!-- Adding Spring depedencies -->
-	
-	
-		
+
+		<dependency>
+			<groupId>${spring.groupid}</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${spring.groupid}</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${spring.groupid}</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${spring.groupid}</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>4.0.0.RELEASE</version>
+		</dependency>
+
+		<!-- Spring AOP dependency -->
+		<dependency>
+			<groupId>${spring.groupid}</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.2</version>
+		</dependency>
+
+		<!-- Hibernate dependency -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.18.0-GA</version>
+		</dependency>
+
+
 		<!-- Adding Struts depedencies -->
 		<dependency>
 			<groupId>org.apache.struts</groupId>

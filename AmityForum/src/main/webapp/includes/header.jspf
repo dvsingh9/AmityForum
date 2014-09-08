@@ -116,10 +116,10 @@
 				<ul id="nav" class="sf-menu">
 					<li class="current-menu-item"><a href="HomePage">Home<span class="subheader">Welcome</span></a>
 					</li>
-					<li><a href="features.html">Features<span class="subheader">Awesome options</span></a>
+					<li><a href="features.html">Post<span class="subheader">Write To All</span></a>
 						<ul>
-							<li><a href="features-columns.html"><span>Columns layout</span></a></li>
-							<li><a href="features-accordion.html"><span>Accordion</span></a></li>
+							<li><a href="showPostPage"><span>Question</span></a></li>
+							<li><a href="features-accordion.html"><span>Discussion</span></a></li>
 							<li><a href="features-toggle.html"><span> Toggle box</span></a></li>
 							<li><a href="features-tabs.html"><span> Tabs</span></a></li>
 							<li><a href="features-infobox.html"><span> Text	box</span></a></li>
