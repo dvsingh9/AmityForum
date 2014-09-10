@@ -4,10 +4,8 @@ import model.Post;
 
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import persistence.dao.PostDAO;
-import service.BO.PostBO;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -20,11 +18,8 @@ public class PostAction extends ActionSupport implements ModelDriven<Post>{
 	private static final long serialVersionUID = 1L;
 	
 	private Post post = new Post();
-	  
-	@Autowired
-	private PostBO postBO;
-
-	    
+	PostDAO postDAO = new PostDAO();   
+	
 	@Action(value="showPostPage",
 		    results={@Result(name="success",location="/jsp/postPage.jsp"),
 		    		@Result(name="failure",location="/jsp/error.jsp")}
@@ -45,7 +40,13 @@ public class PostAction extends ActionSupport implements ModelDriven<Post>{
 	public String addPost(){
 		System.out.println(post.getMessage());
 		try {
-			postBO.addPost(post);
+			postDAO.save(post);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		try {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -66,15 +67,5 @@ public class PostAction extends ActionSupport implements ModelDriven<Post>{
 	public void setPost(Post post) {
 		this.post = post;
 	}
-
-	public PostBO getPostBO() {
-		return postBO;
-	}
-
-	public void setPostBO(PostBO postBO) {
-		this.postBO = postBO;
-	}
-
-
 
 }

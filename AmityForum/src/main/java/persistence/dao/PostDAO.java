@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import model.Post;
 
-public interface PostDAO extends GenericDAO<Post, Serializable>{
-	
+public class PostDAO extends GenericHibernateDAO<Post, Serializable>{  
+	public PostDAO(){
+		super();
+	}
 }

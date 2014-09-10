@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="FORUM_POST", catalog="AMITYFORUM")
+@Table(name="post", schema="forum")
 public class Post implements Serializable{
 
 	/**
@@ -20,17 +20,22 @@ public class Post implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="post_id",unique = true, nullable = false)
 	private Long postId;
+	@Column(name="post_title")
 	private String title;
+	@Column(name="post_message")
 	private String message;
-	private User postedBy;
+	//@Column(name="POST_CREATED_BY")
+	//private User postedBy;
+	@Column(name="post_created_date")
 	private Date postedDate;
 	
 	public Post(){}
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="POST_ID",unique = true, nullable = false)
+	
 	public Long getPostId() {
 		return postId;
 	}
@@ -39,7 +44,7 @@ public class Post implements Serializable{
 	}
 	
 	
-	@Column(name="POST_MESSAGE",nullable = false)
+	
 	public String getMessage() {
 		return message;
 	}
@@ -47,15 +52,7 @@ public class Post implements Serializable{
 		this.message = message;
 	}
 	
-	@Column(name="POST_CREATED_BY",nullable = false)
-	public User getPostedBy() {
-		return postedBy;
-	}
-	public void setPostedBy(User postedBy) {
-		this.postedBy = postedBy;
-	}
-
-	@Column(name="POST_TITLE", nullable = false)
+	
 	public String getTitle() {
 		return title;
 	}
@@ -64,7 +61,7 @@ public class Post implements Serializable{
 		this.title = title;
 	}
 
-	@Column(name="POST_CREATED_DATE",nullable = false)
+	
 	public Date getPostedDate() {
 		return postedDate;
 	}

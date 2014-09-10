@@ -10,7 +10,6 @@
 
 	<properties>
 		<spring.groupid>org.springframework</spring.groupid>
-		<spring.version>4.0.1.RELEASE</spring.version>
 		<hibernate.version>4.3.0.Final</hibernate.version>
 		<struts.version>2.3.16</struts.version>
 		<cglib.version>3.0</cglib.version>
@@ -26,42 +25,12 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- Postgres SQL Server <dependency> <groupId>org.postgresql</groupId> 
-			<artifactId>postgresql</artifactId> <version>9.3-1100-jdbc41</version> </dependency> -->
-
-		<!-- Adding Spring depedencies -->
+		<!-- Postgres SQL Server -->
 
 		<dependency>
-			<groupId>${spring.groupid}</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>${spring.groupid}</groupId>
-			<artifactId>spring-tx</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>${spring.groupid}</groupId>
-			<artifactId>spring-orm</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>${spring.groupid}</groupId>
-			<artifactId>spring-web</artifactId>
-			<version>4.0.0.RELEASE</version>
-		</dependency>
-
-		<!-- Spring AOP dependency -->
-		<dependency>
-			<groupId>${spring.groupid}</groupId>
-			<artifactId>spring-aop</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>cglib</groupId>
-			<artifactId>cglib</artifactId>
-			<version>2.2</version>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.3-1100-jdbc41</version>
 		</dependency>
 
 		<!-- Hibernate dependency -->
@@ -75,6 +44,11 @@
 			<groupId>org.javassist</groupId>
 			<artifactId>javassist</artifactId>
 			<version>3.18.0-GA</version>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.3-1100-jdbc41</version>
 		</dependency>
 
 

@@ -3,48 +3,6 @@
 	      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
 	<display-name>Amity Forum</display-name>
-
-
- <!-- Configure ContextLoaderListener to use AnnotationConfigWebApplicationContext
-       instead of the default XmlWebApplicationContext -->
-  <context-param>
-      <param-name>contextClass</param-name>
-      <param-value>
-          org.springframework.web.context.support.AnnotationConfigWebApplicationContext
-      </param-value>
-  </context-param>
-
-  <!-- Configuration locations must consist of one or more comma- or space-delimited
-       fully-qualified @Configuration classes. Fully-qualified packages may also be
-       specified for component-scanning -->
-  <context-param>
-      <param-name>contextConfigLocation</param-name>
-      <param-value>configurations.SpringConfig</param-value>
-  </context-param>
-
-  <!-- Bootstrap the root application context as usual using ContextLoaderListener -->
-  <listener>
-      <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
-  
-<!-- 	Making application to use Spring Annotation	 -->
-	<servlet>
-		<servlet-name>appServlet</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextClass</param-name>
-			<param-value>
-          	  org.springframework.web.context.support.AnnotationConfigWebApplicationContext
-       	 	</param-value>
-		</init-param>
-		 <init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>
-          		 configurations.SpringConfig
-        </param-value>
-		</init-param>
-		
-	</servlet> 
 	
 <!-- Configuration for Struts 2.x -->
 	<filter>

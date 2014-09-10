@@ -1,13 +1,16 @@
-package persistence.daoImpl;
+package persistence.dao;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 
-import persistence.dao.GenericDAO;
+
+import javax.transaction.Transactional;
+
+import org.hibernate.SessionFactory;
+
+import persistence.HibernateUtil;
+
 
 public class GenericHibernateDAO<T, ID extends Serializable> implements GenericDAO<T, ID> {
 
@@ -18,16 +21,16 @@ public class GenericHibernateDAO<T, ID extends Serializable> implements GenericD
 	}
 	
 	
-	@Autowired
-    private SessionFactory sessionFactory;
+    private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();;
 	
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 
 	protected SessionFactory getSessionFactory() {
-        if (sessionFactory == null)
+        if (sessionFactory == null){
             throw new IllegalStateException("SessionFactory has not been set on DAO before usage");
+        }
         return sessionFactory;
     }
 
@@ -42,10 +45,8 @@ public class GenericHibernateDAO<T, ID extends Serializable> implements GenericD
 		getSessionFactory().getCurrentSession().delete(entiry);
 	}
 	
-	@Transactional
 	public Serializable save(T entiry) {
-		//System.out.println(getSessionFactory());
-		return  getSessionFactory().getCurrentSession().save(entiry);
+		return  getSessionFactory().openSession().save(entiry);
 	}
 
 	@Transactional
