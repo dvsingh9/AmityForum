@@ -4,6 +4,7 @@
 <head>
 <title>Amity Forum</title>
 <!-- CSS -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/auth-buttons.css" type="text/css"	media="screen" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css"	media="screen" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/social-icons.css" type="text/css"	media="screen" />
 <!--[if IE 8]>
@@ -77,6 +78,8 @@
 <link rel="stylesheet"	href="${pageContext.request.contextPath}/js/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css"	type="text/css" media="screen" />
 <script type="text/javascript"	src="${pageContext.request.contextPath}/js/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 <!-- ENDS Fancybox -->
+
+<link rel="stylesheet"	href="${pageContext.request.contextPath}/js/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css"	type="text/css" media="screen" />
 
 </head>
 

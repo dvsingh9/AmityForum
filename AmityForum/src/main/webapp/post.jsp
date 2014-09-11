@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@include page="includes/header.jsp" %>
-
-
 	<!-- MAIN -->
 	<div id="main">
 		<!-- wrapper-main -->

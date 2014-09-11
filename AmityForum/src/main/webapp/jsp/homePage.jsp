@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"  pageEncoding="ISO-8859-1"%>
+<%@page import="action.facebook.FBConnection"%>
 <%@include file="/includes/header.jspf" %>
 
 	<!-- Slider -->
@@ -16,7 +17,9 @@
 <!-- 		</div> -->
 <!-- 	</div> -->
 	<!-- ENDS Slider -->
-
+<%
+	FBConnection fbConnection = new FBConnection();
+%>
 	<!-- MAIN -->
 	<div id="main">
 		<!-- wrapper-main -->
@@ -25,12 +28,12 @@
 			<!-- headline -->
 			<div class="clear"></div>
 			<div id="headline">
-				<span class="main">Nova is a FREE HTML template</span> <span
-					class="sub">Need a professional and sleek html web site
-					design. Try nova is free and easy to use.</span> <a
-					href="http://luiszuno.com/blog/downloads/nova-html-template"
-					id="link" class="link-button-big"><span>Download Nova</span></a>
+				<span class="main">Login Using Facebook</span> <span
+					class="sub">Use facebook for login and posting your posts</span> <a
+					href="<%=fbConnection.getFBAuthUrl()%>"
+					id="link" class="btn-auth btn-facebook"><span>Sign In with Facebook</span></a>
 			</div>
+			
 			<!-- ENDS headline -->
 
 			<!-- content -->

@@ -3,8 +3,8 @@
 	      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
 	<display-name>Amity Forum</display-name>
-	
-<!-- Configuration for Struts 2.x -->
+
+	<!-- Configuration for Struts 2.x -->
 	<filter>
 		<filter-name>struts2</filter-name>
 		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
@@ -13,6 +13,10 @@
 			<param-value>action</param-value>
 		</init-param>
 	</filter>
+
+	<session-config>
+		<session-timeout>180</session-timeout>
+	</session-config>
 
 	<filter-mapping>
 		<filter-name>struts2</filter-name>
