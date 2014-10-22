@@ -9,7 +9,7 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.SessionAware;
 
 import persistence.dao.PostDAO;
-import persistence.dao.postCategoryDAO;
+import persistence.dao.PostCategoryDAO;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -29,7 +29,7 @@ public class PostAction extends ActionSupport implements ModelDriven<Post>, Sess
 	
 	Map sessionMap;
 	PostDAO postDAO = new PostDAO(); 
-	postCategoryDAO categoryDAO = new postCategoryDAO();
+	PostCategoryDAO categoryDAO = new PostCategoryDAO();
 	
 	@Action(value="showPostPage",
 		    results={@Result(name="success",location="/jsp/postPage.jsp"),
@@ -50,11 +50,11 @@ public class PostAction extends ActionSupport implements ModelDriven<Post>, Sess
 		System.out.println(post.getMessage());
 		try {
 			post.setPostedDate(new Date());
+			post.setPostedBy("Danveer Singh from New Delhi");
 			postDAO.save(post);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		
 		try {
 		} catch (Exception e) {

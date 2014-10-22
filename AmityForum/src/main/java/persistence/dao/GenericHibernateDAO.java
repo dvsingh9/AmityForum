@@ -77,12 +77,36 @@ public class GenericHibernateDAO<T, ID extends Serializable> implements GenericD
 		}
 	}
 
-	public T load(ID id) {
-		return (T) getSessionFactory().getCurrentSession().load(getType(), id);
+	public  T load(ID id) throws Exception {
+		Transaction tx =  null;
+		Object object = null;
+		try {
+			tx = session.beginTransaction();
+			object = (T) session.load(type, id);
+			tx.commit();
+		} catch (Exception e) {
+			throw e;
+			
+		}finally{
+			session.close();
+		}
+		return   (T) object;
 	}
 
-	public T get(ID id) {
-		return (T) getSessionFactory().getCurrentSession().get(getType(), id);
+	public  T get(ID id) throws Exception{
+		Transaction tx =  null;
+		Object object = null;
+		try {
+			tx = session.beginTransaction();
+			object = type.cast(session.get(type, id));
+			tx.commit();
+		} catch (Exception e) {
+			throw e;
+			
+		}finally{
+			session.close();
+		}
+		return  (T) object;
 	}
 	public List<T> getAll() {
 		Transaction tx = null;
@@ -99,5 +123,7 @@ public class GenericHibernateDAO<T, ID extends Serializable> implements GenericD
 		}
 		return list;
 	}
+
+	
 
 }

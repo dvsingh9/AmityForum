@@ -8,7 +8,7 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 
 import persistence.dao.PostDAO;
-import persistence.dao.postCategoryDAO;
+import persistence.dao.PostCategoryDAO;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -25,7 +25,7 @@ public class PostListingAction extends ActionSupport{
 	private String categoryId;
 	
 	PostDAO postDAO = new PostDAO(); 
-	postCategoryDAO categoryDAO = new postCategoryDAO();
+	PostCategoryDAO categoryDAO = new PostCategoryDAO();
 	private List<Post> posts;
 	private List<PostCategory> categories;
 	
@@ -41,9 +41,16 @@ public class PostListingAction extends ActionSupport{
 		    		@Result(name="error",location="/jsp/postListingPage.jsp")}
 	)
 	public String showPostListingPage(){
-		categories =  categoryDAO.getAll();
-		posts = postDAO.getAll();
-		Collections.reverse(posts);
+		try {
+			categories =  categoryDAO.getAll();
+			posts = postDAO.getAll();
+			Collections.reverse(posts);
+			addActionMessage(posts.size()+" record found");
+		} catch (Exception e) {
+			addActionError("Could not load data from database, Cause :" +e.getMessage());
+			return ERROR;
+		}
+		
 		return SUCCESS;
 	}
 	@Action(value="searchPostForCategory",
@@ -52,8 +59,12 @@ public class PostListingAction extends ActionSupport{
 	)
 	public String searchPostForCategory(){
 		try {
-			posts = postDAO.searchByCategory(categoryDAO.load(Long.parseLong(categoryId)));
+			PostCategory postCategory = new PostCategory();
+			postCategory.setId(Long.parseLong(categoryId));
+			posts = postDAO.searchByCategory(postCategory);
 			Collections.reverse(posts);
+			categories =  categoryDAO.getAll();
+			addActionMessage(posts.size()+" record found for this category");
 		} catch (Exception e) {
 			addActionError("Could not load data from database, Cause :" +e.getMessage());
 			return ERROR;

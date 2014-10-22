@@ -42,6 +42,9 @@ public class Post implements Serializable{
 	@Column(name="post_created_date")
 	private Date postedDate;
 	
+	@Column(name = "posted_by")
+	private String postedBy;
+	
 	public Post(){}
 	
 	
@@ -88,5 +91,15 @@ public class Post implements Serializable{
 	public void setCategory(PostCategory category) {
 		this.category = category;
 	}
-	
+
+
+	public String getPostedBy() {
+		return postedBy;
+	}
+
+
+	public void setPostedBy(String postedBy) {
+		this.postedBy = postedBy;
+	}
+
 }

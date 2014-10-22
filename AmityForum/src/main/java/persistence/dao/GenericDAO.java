@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface GenericDAO<T ,ID extends Serializable> {
 
-	T load(ID id);
+	 T load(ID id) throws Exception;
 	
-	T get(ID id);
+	 T get( ID id) throws Exception;
 	
 	void delete(T entiry);
 	

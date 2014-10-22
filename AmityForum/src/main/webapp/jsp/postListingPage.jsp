@@ -9,12 +9,12 @@
 					<!-- content -->
 					<div id="content">
 						
-						<!-- title -->
-						<div id="page-title">
-							<span class="title">The Blog</span>
-							<span class="subtitle">Donec eu libero sit amet quam egestas semper.</span>
-						</div>
+						<!-- title -- <div id="page-title">
+						</div>>
+						
 						<!-- ENDS title -->
+						<s:actionerror theme="bootstrap"/>
+           				<s:actionmessage theme="bootstrap"/>
 						
 						<!-- Posts -->
 						<div id="posts">
@@ -43,9 +43,9 @@
 									
 									<div class="the-excerpt">
 										<s:property value="message"/>
-									</div>		
-									<a href="single.html" class="read-more link-button"><span>Read more</span></a>	
-								
+									</div>	
+									<s:set var="postId" value="%{id}"/>
+									<a href="commentPage?postId=${postId}" class="read-more link-button"><span>Comment on this Topic</span></a>	
 								</div>
 								<!-- ENDS shadow -->
 							</div>
@@ -71,21 +71,6 @@
 									<li class="cat-item"><a href="searchPostForCategory?categoryId=${categories[8].id}" title="View all posts">${categories[8].name}</a></li>	
 								</ul>
 							</li>	
-							
-							<li>
-								<h6>Archives All</h6>		
-								<ul>
-									<li class="cat-item"><a href="searchPostForCategory?categoryId=${categories[0].id}" title="View all posts">${categories[0].name}</a></li>
-									<li class="cat-item"><a href="searchPostForCategory?categoryId=${categories[1].id}" title="View all posts">${categories[1].name}</a></li>
-									<li class="cat-item"><a href="searchPostForCategory?categoryId=${categories[2].id}" title="View all posts">${categories[2].name}</a></li>
-									<li class="cat-item"><a href="searchPostForCategory?categoryId=${categories[3].id}" title="View all posts">${categories[3].name}</a></li>
-									<li class="cat-item"><a href="searchPostForCategory?categoryId=${categories[4].id}" title="View all posts">${categories[4].name}</a></li>
-									<li class="cat-item"><a href="searchPostForCategory?categoryId=${categories[5].id}" title="View all posts">${categories[5].name}</a></li>
-									<li class="cat-item"><a href="searchPostForCategory?categoryId=${categories[6].id}" title="View all posts">${categories[6].name}</a></li>
-									<li class="cat-item"><a href="searchPostForCategory?categoryId=${categories[7].id}" title="View all posts">${categories[7].name}</a></li>
-									<li class="cat-item"><a href="searchPostForCategory?categoryId=${categories[8].id}" title="View all posts">${categories[8].name}</a></li>	
-								</ul>
-							</li>
 							<!-- ENDS init sidebar -->
 						</ul>
 						<!-- ENDS sidebar -->
