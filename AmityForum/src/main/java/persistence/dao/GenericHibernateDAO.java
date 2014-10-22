@@ -2,22 +2,23 @@ package persistence.dao;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.util.ArrayList;
+import java.util.List;
 
-
-
-import javax.transaction.Transactional;
-
+import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import persistence.HibernateUtil;
 
 
 public class GenericHibernateDAO<T, ID extends Serializable> implements GenericDAO<T, ID> {
 
-	private Class<T> persistentClass; 
+	private Class<T> type; 
 	
-	public Class<T> getPersistentClass() {
-		return persistentClass;
+	public Class<T> getType() {
+		return type;
 	}
 	
 	
@@ -34,37 +35,69 @@ public class GenericHibernateDAO<T, ID extends Serializable> implements GenericD
         return sessionFactory;
     }
 
+	Session session = getSessionFactory().openSession();
+	
 	@SuppressWarnings("unchecked")
 	public GenericHibernateDAO() {  
-		this.persistentClass = (Class<T>) ((ParameterizedType) getClass()  
+		this.type = (Class<T>) ((ParameterizedType) getClass()  
                 .getGenericSuperclass()).getActualTypeArguments()[0];  
 	}
 	
-	@Transactional
 	public void delete(T entiry) {
-		getSessionFactory().getCurrentSession().delete(entiry);
+		session.delete(entiry);
 	}
-	
-	public Serializable save(T entiry) {
-		return  getSessionFactory().openSession().save(entiry);
+	 
+	public Serializable save(T entity) throws Exception {
+		Transaction tx = null;
+		Serializable id= null;
+		try {
+			tx = session.beginTransaction();
+			id = session.save(entity);
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+			throw e;
+		}finally{
+			session.close();
+		}
+		return  id;
 	}
 
-	@Transactional
-	public void saveOrUpdate(T entiry) {
-		getSessionFactory().getCurrentSession().saveOrUpdate(entiry);
+	public void saveOrUpdate(T entity) throws Exception {
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			session.saveOrUpdate(entity);
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+			throw e;
+		}finally{
+			session.close();
+		}
 	}
 
-	@SuppressWarnings("unchecked")
-	@Transactional
 	public T load(ID id) {
-		return (T) getSessionFactory().getCurrentSession().load(getPersistentClass(), id);
+		return (T) getSessionFactory().getCurrentSession().load(getType(), id);
 	}
 
-	@SuppressWarnings("unchecked")
-	@Transactional
 	public T get(ID id) {
-		return (T) getSessionFactory().getCurrentSession().get(getPersistentClass(), id);
+		return (T) getSessionFactory().getCurrentSession().get(getType(), id);
+	}
+	public List<T> getAll() {
+		Transaction tx = null;
+		List<T> list = new  ArrayList<T>();
+		try {
+			tx = session.beginTransaction();
+			Criteria crit = session.createCriteria(getType());
+			list = crit.list();
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+		}finally{
+			session.close();
+		}
+		return list;
 	}
 
-	
 }

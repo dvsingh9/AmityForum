@@ -21,7 +21,6 @@ public class HomePageAction extends ActionSupport {
 		    results={@Result(name="success",location="/jsp/homePage.jsp")}
 	)
 	public String showHomePage(){
-		System.out.println("In home page action");
 		return SUCCESS;
 	}
 

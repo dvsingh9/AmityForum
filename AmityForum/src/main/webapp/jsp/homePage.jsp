@@ -29,7 +29,7 @@
 			<div class="clear"></div>
 			<div id="headline">
 				<span class="main">Login Using Facebook</span> <span
-					class="sub">Use facebook for login and posting your posts</span> <a
+					class="sub">Use facebook for login and writing your posts</span> <a
 					href="<%=fbConnection.getFBAuthUrl()%>"
 					id="link" class="btn-auth btn-facebook"><span>Sign In with Facebook</span></a>
 			</div>
@@ -53,8 +53,7 @@
 					<!-- Posts -->
 					<div>
 						<ul class="blocks-thumbs thumbs-rollover">
-							<li><a href="single.html" class="thumb" title="An image"><img
-									src="img/dummies/282x150.gif" alt="Post" /></a>
+							<li>
 								<div class="excerpt">
 									<a href="single.html" class="header">Lorem ipsum dolor</a>
 									Pellentesque habitant morbi tristique senectus et netus et
@@ -65,8 +64,7 @@
 									sapien ullamcorper pharetra.
 								</div> <a href="single.html" class="link-button"><span>Read
 										more &#8594;</span></a></li>
-							<li><a href="single.html" class="thumb" title="An image"><img
-									src="img/dummies/282x150.gif" alt="Post" /></a>
+							<li>
 								<div class="excerpt">
 									<a href="single.html" class="header">Lorem ipsum dolor</a>
 									Pellentesque habitant morbi tristique senectus et netus et
@@ -77,8 +75,7 @@
 									sapien ullamcorper pharetra.
 								</div> <a href="single.html" class="link-button"><span>Read
 										more &#8594;</span></a></li>
-							<li><a href="single.html" class="thumb" title="An image"><img
-									src="img/dummies/282x150.gif" alt="Post" /></a>
+							<li>
 								<div class="excerpt">
 									<a href="single.html" class="header">Lorem ipsum dolor</a>
 									Pellentesque habitant morbi tristique senectus et netus et

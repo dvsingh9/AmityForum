@@ -62,7 +62,7 @@ body {
 
 #logo{
 	position: absolute;
-	top: 35px;
+	top: 20px;
 	left: 30px;
 }
 
@@ -751,7 +751,6 @@ h6{ font-size: 20px; }
 
 #posts h1 a{
 	display: block;
-	margin-bottom: 20px;
 	width: 514px;
 	text-decoration: none;
 	color: #51565b;
@@ -784,8 +783,8 @@ h6{ font-size: 20px; }
 	position: relative;
 	overflow: hidden;
 	width: 596px;
-	height: 270px;
-	margin-bottom: 20px;
+	height: 55px;
+	margin-bottom: 10px;
 	background: #f1f1f1;
 	border-radius: 10px;
 	-moz-border-radius: 10px;
@@ -806,13 +805,13 @@ h6{ font-size: 20px; }
 
 #posts .post .post-thumbnail .meta{
 	display: block;
-	width: 252px;
-	height: 207px;
+	width: 550px;
+	height: 45px;
 	font-size: 12px;
 	line-height: 2em;
 	position: absolute;
-	top:30px;
-	left: 30px;
+	top:7px;
+	left: 25px;
 }
 
 #posts.single .post .meta{

@@ -1,33 +1,42 @@
 package action;
 
-import model.Post;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.SessionAware;
 
 import persistence.dao.PostDAO;
+import persistence.dao.postCategoryDAO;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
-public class PostAction extends ActionSupport implements ModelDriven<Post>{
+import entities.Post;
+import entities.PostCategory;
+
+public class PostAction extends ActionSupport implements ModelDriven<Post>, SessionAware{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Post post = new Post();
-	PostDAO postDAO = new PostDAO();   
+	private Post post;
+	List<PostCategory> categories;
+	
+	Map sessionMap;
+	PostDAO postDAO = new PostDAO(); 
+	postCategoryDAO categoryDAO = new postCategoryDAO();
 	
 	@Action(value="showPostPage",
 		    results={@Result(name="success",location="/jsp/postPage.jsp"),
 		    		@Result(name="failure",location="/jsp/error.jsp")}
 	)
 	public String showPostPage(){
-		System.out.println("inside show post page method");
-		//Post postInfo = postBO.getPost(1l);
-		//System.out.println(postInfo.getMessage());
+		categories = categoryDAO.getAll();
 		return SUCCESS;
 	}
 	
@@ -40,6 +49,7 @@ public class PostAction extends ActionSupport implements ModelDriven<Post>{
 	public String addPost(){
 		System.out.println(post.getMessage());
 		try {
+			post.setPostedDate(new Date());
 			postDAO.save(post);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -50,7 +60,6 @@ public class PostAction extends ActionSupport implements ModelDriven<Post>{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return SUCCESS;
 	}
 	
@@ -66,6 +75,23 @@ public class PostAction extends ActionSupport implements ModelDriven<Post>{
 
 	public void setPost(Post post) {
 		this.post = post;
+	}
+
+	public List<PostCategory> getCategories() {
+		return categories;
+	}
+
+
+
+	public void setCategories(List<PostCategory> categories) {
+		this.categories = categories;
+	}
+
+
+
+	public void setSession(Map sessionMap) {
+		this.sessionMap = sessionMap;
+		
 	}
 
 }
