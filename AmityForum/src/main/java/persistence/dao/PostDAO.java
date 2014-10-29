@@ -11,15 +11,15 @@ import org.hibernate.criterion.Restrictions;
 import entities.Post;
 import entities.PostCategory;
 
-public class PostDAO extends GenericHibernateDAO<Post, Serializable>{  
-	public PostDAO(){
+public class PostDAO extends GenericHibernateDAO<Post, Serializable> {
+	public PostDAO() {
 		super();
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public List<Post> searchByCategory(PostCategory category) throws Exception{
+	public List<Post> searchByCategory(PostCategory category) throws Exception {
 		Transaction tx = null;
-		List<Post> list = new  ArrayList<Post>();
+		List<Post> list = new ArrayList<Post>();
 		try {
 			tx = session.beginTransaction();
 			Criteria crit = session.createCriteria(Post.class);
@@ -29,10 +29,10 @@ public class PostDAO extends GenericHibernateDAO<Post, Serializable>{
 		} catch (Exception e) {
 			tx.rollback();
 			e.printStackTrace();
-		}finally{
+		} finally {
 			session.close();
 		}
 		return list;
-		
+
 	}
 }

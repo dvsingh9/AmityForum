@@ -12,44 +12,44 @@ import org.hibernate.Transaction;
 
 import persistence.HibernateUtil;
 
+public class GenericHibernateDAO<T, ID extends Serializable> implements
+		GenericDAO<T, ID> {
 
-public class GenericHibernateDAO<T, ID extends Serializable> implements GenericDAO<T, ID> {
+	private Class<T> type;
 
-	private Class<T> type; 
-	
 	public Class<T> getType() {
 		return type;
 	}
-	
-	
-    private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();;
-	
+
+	private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();;
+
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 
 	protected SessionFactory getSessionFactory() {
-        if (sessionFactory == null){
-            throw new IllegalStateException("SessionFactory has not been set on DAO before usage");
-        }
-        return sessionFactory;
-    }
+		if (sessionFactory == null) {
+			throw new IllegalStateException(
+					"SessionFactory has not been set on DAO before usage");
+		}
+		return sessionFactory;
+	}
 
 	Session session = getSessionFactory().openSession();
-	
+
 	@SuppressWarnings("unchecked")
-	public GenericHibernateDAO() {  
-		this.type = (Class<T>) ((ParameterizedType) getClass()  
-                .getGenericSuperclass()).getActualTypeArguments()[0];  
+	public GenericHibernateDAO() {
+		this.type = (Class<T>) ((ParameterizedType) getClass()
+				.getGenericSuperclass()).getActualTypeArguments()[0];
 	}
-	
+
 	public void delete(T entiry) {
 		session.delete(entiry);
 	}
-	 
+
 	public Serializable save(T entity) throws Exception {
 		Transaction tx = null;
-		Serializable id= null;
+		Serializable id = null;
 		try {
 			tx = session.beginTransaction();
 			id = session.save(entity);
@@ -57,10 +57,10 @@ public class GenericHibernateDAO<T, ID extends Serializable> implements GenericD
 		} catch (Exception e) {
 			tx.rollback();
 			throw e;
-		}finally{
+		} finally {
 			session.close();
 		}
-		return  id;
+		return id;
 	}
 
 	public void saveOrUpdate(T entity) throws Exception {
@@ -72,13 +72,13 @@ public class GenericHibernateDAO<T, ID extends Serializable> implements GenericD
 		} catch (Exception e) {
 			tx.rollback();
 			throw e;
-		}finally{
+		} finally {
 			session.close();
 		}
 	}
 
-	public  T load(ID id) throws Exception {
-		Transaction tx =  null;
+	public T load(ID id) throws Exception {
+		Transaction tx = null;
 		Object object = null;
 		try {
 			tx = session.beginTransaction();
@@ -86,15 +86,15 @@ public class GenericHibernateDAO<T, ID extends Serializable> implements GenericD
 			tx.commit();
 		} catch (Exception e) {
 			throw e;
-			
-		}finally{
+
+		} finally {
 			session.close();
 		}
-		return   (T) object;
+		return (T) object;
 	}
 
-	public  T get(ID id) throws Exception{
-		Transaction tx =  null;
+	public T get(ID id) throws Exception {
+		Transaction tx = null;
 		Object object = null;
 		try {
 			tx = session.beginTransaction();
@@ -102,15 +102,16 @@ public class GenericHibernateDAO<T, ID extends Serializable> implements GenericD
 			tx.commit();
 		} catch (Exception e) {
 			throw e;
-			
-		}finally{
+
+		} finally {
 			session.close();
 		}
-		return  (T) object;
+		return (T) object;
 	}
+
 	public List<T> getAll() {
 		Transaction tx = null;
-		List<T> list = new  ArrayList<T>();
+		List<T> list = new ArrayList<T>();
 		try {
 			tx = session.beginTransaction();
 			Criteria crit = session.createCriteria(getType());
@@ -118,12 +119,10 @@ public class GenericHibernateDAO<T, ID extends Serializable> implements GenericD
 			tx.commit();
 		} catch (Exception e) {
 			tx.rollback();
-		}finally{
+		} finally {
 			session.close();
 		}
 		return list;
 	}
-
-	
 
 }

@@ -8,63 +8,66 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.SessionAware;
 
-import persistence.dao.PostDAO;
 import persistence.dao.PostCategoryDAO;
+import persistence.dao.PostDAO;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 import entities.Post;
 import entities.PostCategory;
+import entities.User;
 
-public class PostAction extends ActionSupport implements ModelDriven<Post>, SessionAware{
+public class PostAction extends ActionSupport implements ModelDriven<Post>,
+		SessionAware {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
+	private String actionError;
+	private String actionMsg;
+
 	private Post post;
 	List<PostCategory> categories;
-	
-	Map sessionMap;
-	PostDAO postDAO = new PostDAO(); 
+
+	Map session;
+	PostDAO postDAO = new PostDAO();
 	PostCategoryDAO categoryDAO = new PostCategoryDAO();
-	
-	@Action(value="showPostPage",
-		    results={@Result(name="success",location="/jsp/postPage.jsp"),
-		    		@Result(name="failure",location="/jsp/error.jsp")}
-	)
-	public String showPostPage(){
+
+	@Action(value = "showPostPage", results = {
+			@Result(name = "success", location = "/jsp/postPage.jsp"),
+			@Result(name = "failure", location = "/jsp/error.jsp") })
+	public String showPostPage() {
+		addActionError(actionError);
+		addActionMessage(actionMsg);
 		categories = categoryDAO.getAll();
 		return SUCCESS;
 	}
-	
-	
-	
-	@Action(value="addPost",
-		    results={@Result(name="success",location="/jsp/postPage.jsp"),
-		    		@Result(name="failure",location="/jsp/error.jsp")}
-	)
-	public String addPost(){
-		System.out.println(post.getMessage());
-		try {
-			post.setPostedDate(new Date());
-			post.setPostedBy("Danveer Singh from New Delhi");
-			postDAO.save(post);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		try {
-		} catch (Exception e) {
-			e.printStackTrace();
+
+	@Action(value = "addPost", results = {
+			@Result(name = "success", location = "showPostPage", type = "chain"),
+			@Result(name = "failure", location = "/jsp/error.jsp") })
+	public String addPost() {
+		User user = (User) session.get(Messages.getString("PostAction.0")); //$NON-NLS-1$
+		if (user != null) {
+			try {
+				post.setPostedDate(new Date());
+				post.setPostedBy(user.getName());
+				postDAO.save(post);
+
+				actionMsg = Messages.getString("PostAction.1"); //$NON-NLS-1$
+			} catch (Exception e) {
+				actionError = Messages.getString("PostAction.2") + e.getMessage(); //$NON-NLS-1$
+			}
+		} else {
+			actionError = Messages.getString("PostAction.3"); //$NON-NLS-1$
 		}
 		return SUCCESS;
 	}
-	
-	
-// getter setter
+
+	// getter setter
 	public Post getModel() {
 		return post;
 	}
@@ -81,17 +84,29 @@ public class PostAction extends ActionSupport implements ModelDriven<Post>, Sess
 		return categories;
 	}
 
-
-
 	public void setCategories(List<PostCategory> categories) {
 		this.categories = categories;
 	}
 
+	public void setSession(Map session) {
+		this.session = session;
 
+	}
 
-	public void setSession(Map sessionMap) {
-		this.sessionMap = sessionMap;
-		
+	public String getActionError() {
+		return actionError;
+	}
+
+	public void setActionError(String actionError) {
+		this.actionError = actionError;
+	}
+
+	public String getActionMsg() {
+		return actionMsg;
+	}
+
+	public void setActionMsg(String actionMsg) {
+		this.actionMsg = actionMsg;
 	}
 
 }

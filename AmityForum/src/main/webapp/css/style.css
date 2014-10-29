@@ -417,6 +417,7 @@ h6{ font-size: 20px; }
 	box-shadow: 0px 0px 0px rgba(0,0,0,.0);
 }
 
+
 /* TWITTER --------------------------------------------------------*/
 
 #twitter{
@@ -1306,7 +1307,28 @@ h6{ font-size: 20px; }
 }
 
 
+#comment {
+    width: 100%;
+    background-color: #F2F2F2;
+    border: 1px solid #C7C7C7;
+    padding: 20px 20px 20px;
+    margin: 10px 0px 0px 10px;
+    position: relative;
+}
+#comment .comment-text {
+    text-shadow: 1px 1px 0px #FFF;
+    font: 14px Arial;
+}
+#comment .comment-details {
+    margin-bottom: 15px;
+}
 
+#comment .comment-details .date {
+    text-decoration: underline;
+    color: #989898;
+    margin-left: 10px;
+    font-style: italic;
+}
 
 
 

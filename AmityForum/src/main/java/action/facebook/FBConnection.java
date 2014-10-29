@@ -56,7 +56,8 @@ public class FBConnection {
 			try {
 				fbConnection = fbGraphURL.openConnection();
 				BufferedReader in;
-				in = new BufferedReader(new InputStreamReader(fbConnection.getInputStream()));
+				in = new BufferedReader(new InputStreamReader(
+						fbConnection.getInputStream()));
 				String inputLine;
 				b = new StringBuffer();
 				while ((inputLine = in.readLine()) != null)
@@ -64,12 +65,14 @@ public class FBConnection {
 				in.close();
 			} catch (IOException e) {
 				e.printStackTrace();
-				throw new RuntimeException("Unable to connect with Facebook "+ e);
+				throw new RuntimeException("Unable to connect with Facebook "
+						+ e);
 			}
 
 			accessToken = b.toString();
 			if (accessToken.startsWith("{")) {
-				throw new RuntimeException("ERROR: Access Token Invalid: "+ accessToken);
+				throw new RuntimeException("ERROR: Access Token Invalid: "
+						+ accessToken);
 			}
 		}
 		return accessToken;

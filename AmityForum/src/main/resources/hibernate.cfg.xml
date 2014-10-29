@@ -18,5 +18,6 @@
         
         <mapping class="entities.Post" />
         <mapping class="entities.PostCategory" />
+         <mapping class="entities.Comment" />
     </session-factory>
 </hibernate-configuration>
