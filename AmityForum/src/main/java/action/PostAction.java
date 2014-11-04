@@ -36,16 +36,6 @@ public class PostAction extends ActionSupport implements ModelDriven<Post>,
 	PostDAO postDAO = new PostDAO();
 	PostCategoryDAO categoryDAO = new PostCategoryDAO();
 
-	@Action(value = "showPostPage", results = {
-			@Result(name = "success", location = "/jsp/postPage.jsp"),
-			@Result(name = "failure", location = "/jsp/error.jsp") })
-	public String showPostPage() {
-		addActionError(actionError);
-		addActionMessage(actionMsg);
-		categories = categoryDAO.getAll();
-		return SUCCESS;
-	}
-
 	@Action(value = "addPost", results = {
 			@Result(name = "success", location = "showPostPage", type = "chain"),
 			@Result(name = "failure", location = "/jsp/error.jsp") })
@@ -67,6 +57,18 @@ public class PostAction extends ActionSupport implements ModelDriven<Post>,
 		return SUCCESS;
 	}
 
+	public String getActionError() {
+		return actionError;
+	}
+
+	public String getActionMsg() {
+		return actionMsg;
+	}
+
+	public List<PostCategory> getCategories() {
+		return categories;
+	}
+
 	// getter setter
 	public Post getModel() {
 		return post;
@@ -76,16 +78,20 @@ public class PostAction extends ActionSupport implements ModelDriven<Post>,
 		return post;
 	}
 
-	public void setPost(Post post) {
-		this.post = post;
+	public void setActionError(String actionError) {
+		this.actionError = actionError;
 	}
 
-	public List<PostCategory> getCategories() {
-		return categories;
+	public void setActionMsg(String actionMsg) {
+		this.actionMsg = actionMsg;
 	}
 
 	public void setCategories(List<PostCategory> categories) {
 		this.categories = categories;
+	}
+
+	public void setPost(Post post) {
+		this.post = post;
 	}
 
 	public void setSession(Map session) {
@@ -93,20 +99,14 @@ public class PostAction extends ActionSupport implements ModelDriven<Post>,
 
 	}
 
-	public String getActionError() {
-		return actionError;
-	}
-
-	public void setActionError(String actionError) {
-		this.actionError = actionError;
-	}
-
-	public String getActionMsg() {
-		return actionMsg;
-	}
-
-	public void setActionMsg(String actionMsg) {
-		this.actionMsg = actionMsg;
+	@Action(value = "showPostPage", results = {
+			@Result(name = "success", location = "/jsp/postPage.jsp"),
+			@Result(name = "failure", location = "/jsp/error.jsp") })
+	public String showPostPage() {
+		addActionError(actionError);
+		addActionMessage(actionMsg);
+		categories = categoryDAO.getAll();
+		return SUCCESS;
 	}
 
 }

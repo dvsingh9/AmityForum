@@ -3,6 +3,13 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+
+<%
+response.setHeader("Cache-Control", "no-cache, no-store");
+response.setDateHeader("Expires", 0);
+response.setHeader("Vary", "*");
+  %>
+ 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -104,6 +111,10 @@
 								To All</span></a></li>
 					<li><a href="showPostListingPage">Blog<span
 							class="subheader">Read our posts</span></a></li>
+				<s:if test="#session.userInfo != null">
+					<li><a href="logOut">logout<span
+							class="subheader">Log Out</span></a></li>	
+				</s:if>				
 				</ul>
 				<!-- Navigation -->
 			</div>

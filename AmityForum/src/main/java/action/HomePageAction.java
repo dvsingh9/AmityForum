@@ -21,12 +21,12 @@ public class HomePageAction extends ActionSupport implements SessionAware {
 
 	Map session;
 
+	public void setSession(Map session) {
+		session = this.session;
+	}
+
 	@Action(value = "HomePage", results = { @Result(name = "success", location = "/jsp/homePage.jsp") })
 	public String showHomePage() {
 		return SUCCESS;
-	}
-
-	public void setSession(Map session) {
-		session = this.session;
 	}
 }

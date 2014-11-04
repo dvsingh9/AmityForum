@@ -8,8 +8,8 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 
 import persistence.dao.CommentDAO;
-import persistence.dao.PostDAO;
 import persistence.dao.PostCategoryDAO;
+import persistence.dao.PostDAO;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -38,28 +38,16 @@ public class PostListingAction extends ActionSupport {
 		}
 	};
 
-	@Action(value = "showPostListingPage", results = {
-			@Result(name = "success", location = "/jsp/postListingPage.jsp"),
-			@Result(name = "error", location = "/jsp/postListingPage.jsp") })
-	public String showPostListingPage() {
-		try {
-			categories = categoryDAO.getAll();
-			posts = postDAO.getAll();
-			Collections.reverse(posts);
+	public List<PostCategory> getCategories() {
+		return categories;
+	}
 
-			for (Post post : posts) {
-				List<Comment> comList = commentDAO.getCommentsOfPost(post);
-				post.setComments(comList);
-			}
-			addActionMessage(posts.size()
-					+ Messages.getString("PostListingAction.0")); //$NON-NLS-1$
-		} catch (Exception e) {
-			e.printStackTrace();
-			addActionError(Messages.getString("PostListingAction.1") //$NON-NLS-1$
-					+ e.getMessage());
-			return ERROR;
-		}
-		return SUCCESS;
+	public String getCategoryId() {
+		return categoryId;
+	}
+
+	public List<Post> getPosts() {
+		return posts;
 	}
 
 	@Action(value = "searchPostForCategory", results = {
@@ -83,27 +71,39 @@ public class PostListingAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-	public List<Post> getPosts() {
-		return posts;
+	public void setCategories(List<PostCategory> categories) {
+		this.categories = categories;
+	}
+
+	public void setCategoryId(String categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;
 	}
 
-	public List<PostCategory> getCategories() {
-		return categories;
-	}
+	@Action(value = "showPostListingPage", results = {
+			@Result(name = "success", location = "/jsp/postListingPage.jsp"),
+			@Result(name = "error", location = "/jsp/postListingPage.jsp") })
+	public String showPostListingPage() {
+		try {
+			categories = categoryDAO.getAll();
+			posts = postDAO.getAll();
+			Collections.reverse(posts);
 
-	public void setCategories(List<PostCategory> categories) {
-		this.categories = categories;
-	}
-
-	public String getCategoryId() {
-		return categoryId;
-	}
-
-	public void setCategoryId(String categoryId) {
-		this.categoryId = categoryId;
+			for (Post post : posts) {
+				List<Comment> comList = commentDAO.getCommentsOfPost(post);
+				post.setComments(comList);
+			}
+			addActionMessage(posts.size()
+					+ Messages.getString("PostListingAction.0")); //$NON-NLS-1$
+		} catch (Exception e) {
+			e.printStackTrace();
+			addActionError(Messages.getString("PostListingAction.1") //$NON-NLS-1$
+					+ e.getMessage());
+			return ERROR;
+		}
+		return SUCCESS;
 	}
 }

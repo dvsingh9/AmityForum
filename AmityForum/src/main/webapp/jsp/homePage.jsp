@@ -30,9 +30,8 @@
 		<div class="clear"></div>
 		
 		<div id="headline">
-		<s:if test="session.userInfo != null">
-		<span class="main">You are Logged In as : <s:property value="sesssion.userInfo.name"/></span> 
-			
+		<s:if test="#session.userInfo != null">
+		<span class="main">You are Logged In as : <s:property value="#session.userInfo.name"/></span> 
 		</s:if><s:else>
 			<span class="main">Login Using Facebook</span> <span class="sub">Use
 				facebook for login and writing posts and comments</span> <a
@@ -51,7 +50,7 @@
 
 				<h6>Forum for Amity university, Noida.</h6>
 				<p>This project is designed for the students of Amity University
-					or those who are wishing to joint Amity. They are having a lot of
+					or those who are wishing to join or student of  Amity University, Noida. They are having a lot of
 					queries about academics. This forum will help them to avoid
 					visiting University for their queries.</p>
 				<a href="HomePage" class="link-button"><span>Read more
